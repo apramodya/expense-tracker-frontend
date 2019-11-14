@@ -13,6 +13,7 @@ import { TransactionsComponent } from './pages/transactions/transactions.compone
 import { CategoriesComponent } from './pages/categories/categories.component';
 import {Routes, RouterModule} from '@angular/router';
 import { MiniSummaryComponent } from './pages/summary/mini-summary/mini-summary.component';
+import { MiniTransactionsComponent } from './pages/transactions/mini-transactions/mini-transactions.component';
 
 const appRoute: Routes = [
   {path: '', component: SummaryComponent},
@@ -27,7 +28,8 @@ const appRoute: Routes = [
     SummaryComponent,
     TransactionsComponent,
     CategoriesComponent,
-    MiniSummaryComponent
+    MiniSummaryComponent,
+    MiniTransactionsComponent
   ],
   imports: [
     BrowserModule,
