@@ -9,7 +9,9 @@
                         <div class="col"></div>
                         <div class="col">
                             <div class="text-center">
-                                <button mdbBtn type="button" size="sm" color="primary">Add New Transaction</button>
+                                <button mdbBtn type="button" size="sm" color="primary"
+                                        data-toggle="modal" data-target="#basicExample"
+                                        (click)="frame.show()">Add New Transaction</button>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -25,4 +27,47 @@
     </div>
 </div>
 
-
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add New Transaction</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input type="text" id="amount" class="form-control" >
+                    <label for="amount">Amount</label>
+                </div>
+                <div class="md-form mb-5">
+                    <label for="transaction-type">Transaction Type</label>
+                    <br><br>
+                    <select class="browser-default custom-select" id="transaction-type">
+                        <option selected>Choose option</option>
+                        <option value="1">Income</option>
+                        <option value="2">Expense</option>
+                    </select>
+                </div>
+                <div class="md-form mb-5">
+                    <label for="category-type">Category Type</label>
+                    <br><br>
+                    <select class="browser-default custom-select" id="category-type">
+                        <option selected>Choose option</option>
+                        <option value="1">Food</option>
+                        <option value="2">Shopping</option>
+                    </select>
+                </div>
+                <div class="md-form mb-5">
+                    <input type="text" id="note" class="form-control" >
+                    <label for="note">Note</label>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add</button>
+            </div>
+        </div>
+    </div>
+</div>
