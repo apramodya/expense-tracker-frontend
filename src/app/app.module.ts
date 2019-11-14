@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SummaryComponent } from './pages/summary/summary.component';
 import { TransactionsComponent } from './pages/transactions/transactions.component';
@@ -38,6 +38,7 @@ const appRoute: Routes = [
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoute)
   ],
   providers: [],

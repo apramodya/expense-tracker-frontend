@@ -9,7 +9,9 @@
                         <div class="col"></div>
                         <div class="col">
                             <div class="text-center">
-                                <button mdbBtn type="button" size="sm" color="primary">Add New Category</button>
+                                <button mdbBtn type="button" size="sm" color="primary"
+                                        data-toggle="modal" data-target="#basicExample"
+                                        (click)="frame.show()">Add New Category</button>
                             </div>
                         </div>
                         <div class="col"></div>
@@ -25,4 +27,34 @@
     </div>
 </div>
 
-
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add New Category</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input type="text" id="category-title" class="form-control" >
+                    <label for="category-title">Category Title</label>
+                </div>
+                <div class="md-form mb-5">
+                    <label for="category-title">Category Type</label>
+                    <br><br>
+                    <select class="browser-default custom-select">
+                        <option selected>Choose option</option>
+                        <option value="1">Income</option>
+                        <option value="2">Expense</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add</button>
+            </div>
+        </div>
+    </div>
+</div>
