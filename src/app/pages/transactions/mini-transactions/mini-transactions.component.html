@@ -1,32 +1,52 @@
 <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex justify-content-between align-items-center">
+    <li *ngFor="let transaction of transactions" class="list-group-item d-flex justify-content-between align-items-center">
         <div class="container">
             <div class="row">
-                <span class="text-capitalize font-weight-bolder">Travel</span>
+                <span (click)="viewTransaction(transaction.transactionId); frame.show();" class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
             </div>
             <div class="row">
-                <div class="col-10">
-                    <span class="font-weight-lighter">Wednesday, 13 Nov 2019</span>
+                <div class="col-9">
+                    <span class="font-weight-lighter">{{transaction.timestamp | date}}</span>
                 </div>
                 <div class="col">
-                    <span class="font-weight-normal text-danger">320.00</span>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="container">
-            <div class="row ">
-                <span class="text-capitalize font-weight-bolder">Salary</span>
-            </div>
-            <div class="row">
-                <div class="col-10">
-                    <span class="font-weight-lighter">Monday, 1 Nov 2019</span>
-                </div>
-                <div class="col">
-                    <span class="font-weight-normal text-success">3500.00</span>
+                    <span class="font-weight-normal text-danger">{{transaction.amount | currency: 'Rs'}}</span>
                 </div>
             </div>
         </div>
     </li>
 </ul>
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Transaction</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input mdbInput [(ngModel)]="amount" type="number" id="amount" class="form-control" >
+                    <label for="amount">Amount</label>
+                </div>
+                <div class="md-form mb-5">
+                    <label for="category-type">Category Type</label>
+                    <br><br>
+                    <select [(ngModel)]="category" class="browser-default custom-select" id="category-type">
+                        <option selected>Choose option</option>
+                        <option *ngFor="let category of categories" [value]="category.categoryId" class="text-capitalize">{{category.categoryName}}</option>
+                    </select>
+                </div>
+                <div class="md-form mb-5">
+                    <input mdbInput [(ngModel)]="note" type="text" id="note" class="form-control" >
+                    <label for="note">Note</label>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn (click)="updateTransaction()" color="primary" class="waves-light" mdbWavesEffect>Edit</button>
+            </div>
+        </div>
+    </div>
+</div>

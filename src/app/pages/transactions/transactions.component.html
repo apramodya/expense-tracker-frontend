@@ -39,34 +39,24 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">
-                    <input type="text" id="amount" class="form-control" >
+                    <input mdbInput [(ngModel)]="amount" type="number" id="amount" class="form-control" >
                     <label for="amount">Amount</label>
-                </div>
-                <div class="md-form mb-5">
-                    <label for="transaction-type">Transaction Type</label>
-                    <br><br>
-                    <select class="browser-default custom-select" id="transaction-type">
-                        <option selected>Choose option</option>
-                        <option value="1">Income</option>
-                        <option value="2">Expense</option>
-                    </select>
                 </div>
                 <div class="md-form mb-5">
                     <label for="category-type">Category Type</label>
                     <br><br>
-                    <select class="browser-default custom-select" id="category-type">
+                    <select [(ngModel)]="category" class="browser-default custom-select" id="category-type">
                         <option selected>Choose option</option>
-                        <option value="1">Food</option>
-                        <option value="2">Shopping</option>
+                        <option *ngFor="let category of categories" [value]="category.categoryId" class="text-capitalize">{{category.categoryName}}</option>
                     </select>
                 </div>
                 <div class="md-form mb-5">
-                    <input type="text" id="note" class="form-control" >
+                    <input mdbInput [(ngModel)]="note" type="text" id="note" class="form-control" >
                     <label for="note">Note</label>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add</button>
+                <button mdbBtn (click)="addTransaction()" color="primary" class="waves-light" mdbWavesEffect>Add</button>
             </div>
         </div>
     </div>

@@ -39,21 +39,25 @@
             </div>
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">
-                    <input type="text" id="category-title" class="form-control" >
+                    <input mdbInput [(ngModel)]="categoryName" type="text" id="category-title" class="form-control" >
                     <label for="category-title">Category Title</label>
                 </div>
                 <div class="md-form mb-5">
                     <label for="category-title">Category Type</label>
                     <br><br>
-                    <select class="browser-default custom-select">
+                    <select [(ngModel)]="categoryType" class="browser-default custom-select">
                         <option selected>Choose option</option>
-                        <option value="1">Income</option>
-                        <option value="2">Expense</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
                     </select>
+                </div>
+                <div class="md-form mb-5">
+                    <input mdbInput [(ngModel)]="categoryLimit" type="number" id="category-limit" class="form-control" >
+                    <label for="category-limit">Category Budget</label>
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add</button>
+                <button (click)="addCategory()" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add</button>
             </div>
         </div>
     </div>
