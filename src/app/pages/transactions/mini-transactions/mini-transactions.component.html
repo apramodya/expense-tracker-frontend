@@ -3,19 +3,18 @@
 </div>
 <ul class="list-group list-group-flush">
     <li *ngFor="let transaction of transactions" class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="container"  >
-            <div class="row">
-                <span (click)="viewTransaction(transaction.transactionId); frame.show();" class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
-            </div>
+        <div class="container">
             <div class="row">
                 <div class="col-9">
-                    <span class="font-weight-lighter">{{transaction.timestamp | date}}</span>
+                    <span (click)="viewTransaction(transaction.transactionId); frame.show();" class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
+                    | <span class="font-weight-lighter">{{transaction.timestamp | date}}</span>
+                    | <span class="font-weight-lighter text-capitalize">{{transaction.remarks}}</span>
                 </div>
                 <div class="col">
                     <span class="font-weight-normal text-danger">{{transaction.amount | currency: 'Rs'}}</span>
                 </div>
-                <div class="">
-                    <span (click)="deleteTransaction(transaction.transactionId)"><mdb-icon fas icon="trash"></mdb-icon></span>
+                <div class="col">
+                    <span (click)="deleteTransaction(transaction.transactionId)"><mdb-icon fas icon="trash" class="text-danger"></mdb-icon></span>
                 </div>
             </div>
         </div>
@@ -51,7 +50,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button mdbBtn (click)="updateTransaction()" color="primary" class="waves-light" mdbWavesEffect>Edit</button>
+                <button mdbBtn (click)="updateTransaction()" color="success" class="waves-light" mdbWavesEffect>Edit</button>
             </div>
         </div>
     </div>

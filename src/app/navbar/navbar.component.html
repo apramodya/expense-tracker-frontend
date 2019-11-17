@@ -1,25 +1,26 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-success" [containerInside]="false">
 
     <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="#">Expense Tracker</a></mdb-navbar-brand>
+    <mdb-navbar-brand><a class="navbar-brand" href="#">My Expenses</a></mdb-navbar-brand>
 
     <!-- Collapsible content -->
     <links>
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a routerLink="/" class="nav-link waves-light" mdbWavesEffect>Summary</a>
+            <!-- Dropdown -->
+            <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                    My<span class="caret"></span></a>
+                <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                    <a routerLink="/" class="dropdown-item waves-light" mdbWavesEffect href="#">My Summary</a>
+                    <a routerLink="/transactions" class="dropdown-item waves-light" mdbWavesEffect href="#">My Transactions</a>
+                    <a routerLink="/budget" class="dropdown-item waves-light" mdbWavesEffect href="#">My Budget</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a routerLink="/transactions" class="nav-link waves-light" mdbWavesEffect>Transactions</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/categories" class="nav-link waves-light" mdbWavesEffect>Categories</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/budget" class="nav-link waves-light" mdbWavesEffect>Budget</a>
+                <a routerLink="/categories" class="nav-link waves-light" mdbWavesEffect>All Categories</a>
             </li>
         </ul>
         <!-- Links -->

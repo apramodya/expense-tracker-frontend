@@ -39,7 +39,7 @@ export class TransactionService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'user_id': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
+        'user': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
       })
     };
     console.log(transaction);

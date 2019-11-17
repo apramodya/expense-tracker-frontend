@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row">
-        <div class="col-2"></div>
         <div class="col-sm">
             <div class="jumbotron jumbotron-fluid">
                 <p class="text-center text-uppercase font-weight-bold">{{onViewMonthName}}</p>
@@ -10,11 +9,11 @@
                         <div class="col">
                             <div class="text-center">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                    <button [disabled]="prevDis" type="button" (click)="prevMonth()" mdbBtn color="primary" mdbWavesEffect style="margin-right: 5px"><</button>
-                                    <button [disabled]="onViewMonthNameString != onViewMonthName" mdbBtn type="button" size="sm" color="primary"
+                                    <button [disabled]="prevDis" type="button" (click)="prevMonth()" mdbBtn color="success" mdbWavesEffect style="margin-right: 5px">Prev</button>
+                                    <button [disabled]="onViewMonthNameString != onViewMonthName" mdbBtn type="button" size="sm" color="success"
                                             data-toggle="modal" data-target="#basicExample"
                                             (click)="frame.show()">Add New Transaction</button>
-                                    <button [disabled]="nextDis" type="button" (click)="nextMonth()" mdbBtn color="primary" mdbWavesEffect style="margin-left: 5px">></button>
+                                    <button [disabled]="nextDis" type="button" (click)="nextMonth()" mdbBtn color="success" mdbWavesEffect style="margin-left: 5px">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +26,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
 </div>
 
@@ -60,7 +58,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button mdbBtn (click)="addTransaction()" color="primary" class="waves-light" mdbWavesEffect>Add</button>
+                <button mdbBtn (click)="addTransaction()" color="success" class="waves-light" mdbWavesEffect>Add</button>
             </div>
         </div>
     </div>

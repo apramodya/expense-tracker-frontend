@@ -1,15 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-2"></div>
         <div class="col-sm">
             <div class="jumbotron jumbotron-fluid">
-                <p class="text-center text-uppercase font-weight-bold">Categories</p>
+                <p class="text-center text-uppercase font-weight-bold text-success">Categories</p>
                 <div class="container">
                     <div class="row">
                         <div class="col"></div>
                         <div class="col">
                             <div class="text-center">
-                                <button mdbBtn type="button" size="sm" color="primary"
+                                <button mdbBtn type="button" size="sm" color="success"
                                         data-toggle="modal" data-target="#basicExample"
                                         (click)="frame.show()">Add New Category</button>
                             </div>
@@ -23,7 +22,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-2"></div>
     </div>
 </div>
 
@@ -57,7 +55,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button (click)="addCategory()" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Add</button>
+                <button (click)="addCategory()" mdbBtn color="success" class="waves-light" mdbWavesEffect>Add</button>
             </div>
         </div>
     </div>
