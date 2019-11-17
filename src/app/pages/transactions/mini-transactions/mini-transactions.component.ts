@@ -11,6 +11,7 @@ import {ModalDirective} from 'angular-bootstrap-md';
 export class MiniTransactionsComponent implements OnInit, OnChanges {
   @ViewChild('frame', { static: true }) frame: ModalDirective;
   @Input() data: number;
+  @Input() variable: string;
   onViewMonth: number;
   onViewYear = new Date().getFullYear();
   amount: number;
@@ -25,6 +26,7 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const data: SimpleChange = changes.data;
+    // const variable: SimpleChange = changes.variable;
     this.onViewMonth = data.currentValue;
     this.parametreString = this.onViewYear + '-' + this.onViewMonth;
     this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
@@ -48,6 +50,20 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.cd.detectChanges();
+  }
+
+  deleteTransaction(tranId) {
+    this.transactionService.deleteTransactions(tranId).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          this.ngOnInit();
+        }
+    );
   }
 
   viewTransaction(tranId){

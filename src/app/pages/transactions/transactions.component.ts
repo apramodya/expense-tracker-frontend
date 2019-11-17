@@ -20,8 +20,11 @@ export class TransactionsComponent implements OnInit {
   nextDis: boolean;
   prevDis: boolean;
   currentMonth: number;
+  currentMonth1: number;
   onViewMonth: number;
+  onVariable: string;
   onViewMonthName: string;
+  onViewMonthNameString: string;
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
@@ -37,6 +40,8 @@ export class TransactionsComponent implements OnInit {
     this.currentMonth = new Date().getMonth();
     this.onViewMonthName = this.monthNames[this.currentMonth];
     this.onViewMonth = this.currentMonth + 1;
+    this.currentMonth1 = new Date().getMonth();
+    this.onViewMonthNameString = this.monthNames[this.currentMonth1];
   }
 
   addTransaction() {
@@ -53,6 +58,7 @@ export class TransactionsComponent implements OnInit {
           console.log(error);
         },
         () => {
+          this.onVariable = '_' + Math.random().toString(36).substr(2, 9);
           this.viewChild.ngOnInit();
           this.frame.hide();
           this.amount = null;
@@ -70,6 +76,7 @@ export class TransactionsComponent implements OnInit {
     else{
       this.prevDis = false;
     }
+    this.onVariable = '_' + Math.random().toString(36).substr(2, 9);
     this.viewChild.ngOnInit();
   }
   prevMonth() {
@@ -81,6 +88,7 @@ export class TransactionsComponent implements OnInit {
     else{
       this.nextDis = false;
     }
+    this.onVariable = '_' + Math.random().toString(36).substr(2, 9);
     this.viewChild.ngOnInit();
   }
 }

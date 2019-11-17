@@ -11,7 +11,7 @@
                             <div class="text-center">
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                     <button [disabled]="prevDis" type="button" (click)="prevMonth()" mdbBtn color="primary" mdbWavesEffect style="margin-right: 5px"><</button>
-                                    <button mdbBtn type="button" size="sm" color="primary"
+                                    <button [disabled]="onViewMonthNameString != onViewMonthName" mdbBtn type="button" size="sm" color="primary"
                                             data-toggle="modal" data-target="#basicExample"
                                             (click)="frame.show()">Add New Transaction</button>
                                     <button [disabled]="nextDis" type="button" (click)="nextMonth()" mdbBtn color="primary" mdbWavesEffect style="margin-left: 5px">></button>
@@ -23,7 +23,7 @@
                 </div>
                 <hr>
                 <div class="container">
-                    <app-mini-transactions [data]="onViewMonth"></app-mini-transactions>
+                    <app-mini-transactions [data]="onViewMonth" [variable]="onVariable"></app-mini-transactions>
                 </div>
             </div>
         </div>

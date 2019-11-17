@@ -3,9 +3,9 @@
 </div>
 <ul class="list-group list-group-flush">
     <li *ngFor="let transaction of transactions" class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="container" (click)="viewTransaction(transaction.transactionId); frame.show();" >
+        <div class="container"  >
             <div class="row">
-                <span class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
+                <span (click)="viewTransaction(transaction.transactionId); frame.show();" class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
             </div>
             <div class="row">
                 <div class="col-9">
@@ -13,6 +13,9 @@
                 </div>
                 <div class="col">
                     <span class="font-weight-normal text-danger">{{transaction.amount | currency: 'Rs'}}</span>
+                </div>
+                <div class="">
+                    <span (click)="deleteTransaction(transaction.transactionId)"><mdb-icon fas icon="trash"></mdb-icon></span>
                 </div>
             </div>
         </div>

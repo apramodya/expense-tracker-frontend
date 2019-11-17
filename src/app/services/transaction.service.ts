@@ -45,4 +45,13 @@ export class TransactionService {
     console.log(transaction);
     return this.http.put('http://localhost:8080/transaction/' +  transactionId, transaction, httpOptions);
   }
+  deleteTransactions(tranId) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'user': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
+      })
+    };
+    return this.http.delete('http://localhost:8080/transaction/' + tranId, httpOptions);
+  }
 }

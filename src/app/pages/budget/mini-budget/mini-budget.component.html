@@ -1,9 +1,12 @@
+<div *ngIf="!categories.length" class="">
+    <p class="text-center font-weight-bold">No budget available for this month</p>
+</div>
 <ul class="list-group">
     <div *ngFor="let category of categories" class="row">
         <div class="col-4">
             <li [ngClass]="(category.type=='expense')?'text-danger':'text-success'"
-                class="list-group-item text-capitalize" (click)="viewCategory(category.categoryId);frame.show();">
-                {{category['categoryName']}}
+                class="list-group-item text-capitalize">
+                {{category['category']}}
             </li>
         </div>
         <div class="col-8">
