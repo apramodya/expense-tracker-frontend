@@ -26,21 +26,21 @@ export class MiniCategoriesComponent implements OnInit {
 
   viewCategory(categoryId) {
     for (const item of this.categories) {
-      if (item.categoryId === categoryId) {
-        this.categoryName = item.categoryName;
-        this.categoryLimit = item.limit;
-        this.categoryType = item.type;
-        this.categoryId = item.categoryId;
+      if (item.category_id === categoryId) {
+        this.categoryName = item.category_name;
+        this.categoryLimit = item.category_limit;
+        this.categoryType = item.category_type;
+        this.categoryId = item.category_id;
       }
     }
   }
 
   updateCategory() {
     const data = {
-      userId : '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e',
-      categoryName : this.categoryName,
-      type : this.categoryType,
-      limit : this.categoryLimit
+      user_id : '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e',
+      category_name : this.categoryName,
+      category_type : this.categoryType,
+      category_limit : this.categoryLimit
     };
     this.categoryService.updateCategories(data, this.categoryId).subscribe(
         data => {

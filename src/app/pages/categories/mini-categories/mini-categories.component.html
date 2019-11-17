@@ -1,9 +1,9 @@
 <ul class="list-group">
     <div *ngFor="let category of categories" class="row">
         <div class="col-12">
-            <li [ngClass]="(category.type=='expense')?'text-danger':'text-success'"
-                class="list-group-item text-capitalize" (click)="viewCategory(category.categoryId);frame.show();">
-                {{category['categoryName']}}
+            <li [ngClass]="(category.category_type=='expense')?'text-danger':'text-success'"
+                class="list-group-item text-capitalize" (click)="viewCategory(category.category_id);frame.show();">
+                {{category['category_name']}}
             </li>
         </div>
     </div>

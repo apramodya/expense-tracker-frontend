@@ -19,10 +19,10 @@ export class CategoriesComponent implements OnInit {
   }
   addCategory() {
     const data = {
-      userId : '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e',
-      categoryName : this.categoryName,
-      type : this.categoryType,
-      limit : this.categoryLimit
+      user_id : '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e',
+      category_name : this.categoryName,
+      category_type : this.categoryType,
+      category_limit : this.categoryLimit
     };
     this.categoryService.postCategories(data).subscribe(
         data => {

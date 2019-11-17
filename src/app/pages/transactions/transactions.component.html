@@ -51,7 +51,7 @@
                     <br><br>
                     <select [(ngModel)]="category" class="browser-default custom-select" id="category-type">
                         <option selected>Choose option</option>
-                        <option *ngFor="let category of categories" [value]="category.categoryId" class="text-capitalize">{{category.categoryName}}</option>
+                        <option *ngFor="let category of categories" [value]="category.category_id" class="text-capitalize">{{category.category_name}}</option>
                     </select>
                 </div>
                 <div class="md-form mb-5">

@@ -79,9 +79,9 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
 
   updateTransaction() {
     const data = {
-      categoryId: this.category,
-      amount: this.amount,
-      remarks: this.note
+        category_id: this.category,
+        transaction_amount: this.amount,
+        transaction_notes: this.note
     };
     this.transactionService.updateTransactions(data, this.transactionId).subscribe(
         data => {

@@ -12,25 +12,25 @@ export class CategoryService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'user': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
+        'user_id': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
       })
     };
-    return this.http.get('http://localhost:8080/category', httpOptions);
+    return this.http.get('http://localhost:8080/category/user', httpOptions);
   }
   postCategories(category: Object) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'user': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
+        'user_id': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
       })
     };
-    return this.http.post('http://localhost:8080/category', category, httpOptions);
+    return this.http.post('http://localhost:8080/category/save', category, httpOptions);
   }
   updateCategories(category: Object, categoryId) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'user': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
+        'user_id': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
       })
     };
     return this.http.put('http://localhost:8080/category/' + categoryId, category, httpOptions);

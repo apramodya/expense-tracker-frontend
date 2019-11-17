@@ -46,9 +46,9 @@ export class TransactionsComponent implements OnInit {
 
   addTransaction() {
     const data = {
-      categoryId: this.category,
-      amount: this.amount,
-      remarks: this.note
+      category_id: this.category,
+      transaction_amount: this.amount,
+      transaction_notes: this.note
     };
     this.transactionService.postTransactions(data).subscribe(
         data => {
