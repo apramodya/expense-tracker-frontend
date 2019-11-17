@@ -10,7 +10,7 @@ export class MiniBudgetComponent implements OnInit, OnChanges {
   @Input() data: number;
   onViewMonth: number;
   onViewYear = new Date().getFullYear();
-  categories: Object = [];
+  categories = [];
   parametreString: string;
   constructor(private cd: ChangeDetectorRef, private categoryService: CategoryService) { }
 
@@ -21,7 +21,8 @@ export class MiniBudgetComponent implements OnInit, OnChanges {
     this.categoryService.getCategoryLimit(this.parametreString).subscribe(
         data => {
           if (data) {
-            this.categories = data;
+              console.log(data);
+            this.categories = data['data'];
           }
           else{
             this.categories = [];
