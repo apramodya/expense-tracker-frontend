@@ -35,4 +35,13 @@ export class CategoryService {
     };
     return this.http.put('http://localhost:8080/category/' + categoryId, category, httpOptions);
   }
+  getCategoryLimit() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'user': '7fa65ff0-4a3e-4cc5-b975-fae5c16b385e'
+      })
+    };
+    return this.http.get('http://localhost:8080/report/category/expense/limit', httpOptions);
+  }
 }

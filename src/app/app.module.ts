@@ -16,11 +16,14 @@ import {Routes, RouterModule} from '@angular/router';
 import { MiniSummaryComponent } from './pages/summary/mini-summary/mini-summary.component';
 import { MiniTransactionsComponent } from './pages/transactions/mini-transactions/mini-transactions.component';
 import { MiniCategoriesComponent } from './pages/categories/mini-categories/mini-categories.component';
+import { BudgetComponent } from './pages/budget/budget.component';
+import { MiniBudgetComponent } from './pages/budget/mini-budget/mini-budget.component';
 
 const appRoute: Routes = [
   {path: '', component: SummaryComponent},
   {path: 'transactions', component: TransactionsComponent},
   {path: 'categories', component: CategoriesComponent},
+  {path: 'budget', component: BudgetComponent},
 ];
 
 @NgModule({
@@ -32,7 +35,9 @@ const appRoute: Routes = [
     CategoriesComponent,
     MiniSummaryComponent,
     MiniTransactionsComponent,
-    MiniCategoriesComponent
+    MiniCategoriesComponent,
+    BudgetComponent,
+    MiniBudgetComponent
   ],
   imports: [
     BrowserModule,

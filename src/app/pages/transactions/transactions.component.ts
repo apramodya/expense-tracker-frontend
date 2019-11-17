@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, SimpleChanges} from '@angular/core';
 import {CategoryService} from '../../services/category.service';
 import {TransactionService} from '../../services/transaction.service';
 import { ModalDirective } from 'angular-bootstrap-md';
@@ -17,6 +17,14 @@ export class TransactionsComponent implements OnInit {
   category: string;
   note: string = '';
   categories: any;
+  nextDis: boolean;
+  prevDis: boolean;
+  currentMonth: number;
+  onViewMonth: number;
+  onViewMonthName: string;
+  monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
   constructor(private categoryService: CategoryService, private transactionService: TransactionService) {
     this.categoryService.getCategories().subscribe(
         data => {
@@ -26,6 +34,9 @@ export class TransactionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentMonth = new Date().getMonth();
+    this.onViewMonthName = this.monthNames[this.currentMonth];
+    this.onViewMonth = this.currentMonth + 1;
   }
 
   addTransaction() {
@@ -49,5 +60,27 @@ export class TransactionsComponent implements OnInit {
           this.note = null;
         }
     );
+  }
+  nextMonth() {
+    this.onViewMonth = this.onViewMonth + 1;
+    this.onViewMonthName = this.monthNames[this.onViewMonth - 1];
+    if (this.onViewMonth === 12) {
+      this.nextDis = true;
+    }
+    else{
+      this.prevDis = false;
+    }
+    this.viewChild.ngOnInit();
+  }
+  prevMonth() {
+    this.onViewMonth = this.onViewMonth - 1;
+    this.onViewMonthName = this.monthNames[this.onViewMonth - 1];
+    if (this.onViewMonth === 1) {
+      this.prevDis = true;
+    }
+    else{
+      this.nextDis = false;
+    }
+    this.viewChild.ngOnInit();
   }
 }

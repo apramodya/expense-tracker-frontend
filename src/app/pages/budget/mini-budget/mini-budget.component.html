@@ -1,10 +1,16 @@
 <ul class="list-group">
     <div *ngFor="let category of categories" class="row">
-        <div class="col-12">
+        <div class="col-4">
             <li [ngClass]="(category.type=='expense')?'text-danger':'text-success'"
                 class="list-group-item text-capitalize" (click)="viewCategory(category.categoryId);frame.show();">
                 {{category['categoryName']}}
             </li>
+        </div>
+        <div class="col-8">
+            <br>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
         </div>
     </div>
 </ul>

@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild
-} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from '../../../services/category.service';
 import { ModalDirective } from 'angular-bootstrap-md';
 
@@ -25,8 +24,8 @@ export class MiniCategoriesComponent implements OnInit {
     );
   }
 
-  viewCategory(categoryId){
-    for (const item of this.categories){
+  viewCategory(categoryId) {
+    for (const item of this.categories) {
       if (item.categoryId === categoryId) {
         this.categoryName = item.categoryName;
         this.categoryLimit = item.limit;

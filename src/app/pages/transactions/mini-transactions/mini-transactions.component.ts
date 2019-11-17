@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges, SimpleChange, ChangeDetectorRef} from '@angular/core';
 import {TransactionService} from '../../../services/transaction.service';
 import {CategoryService} from '../../../services/category.service';
 import {ModalDirective} from 'angular-bootstrap-md';
@@ -6,30 +6,48 @@ import {ModalDirective} from 'angular-bootstrap-md';
 @Component({
   selector: 'app-mini-transactions',
   templateUrl: './mini-transactions.component.html',
-  styleUrls: ['./mini-transactions.component.scss']
+  styleUrls: ['./mini-transactions.component.scss'],
 })
-export class MiniTransactionsComponent implements OnInit {
+export class MiniTransactionsComponent implements OnInit, OnChanges {
   @ViewChild('frame', { static: true }) frame: ModalDirective;
+  @Input() data: number;
+  onViewMonth: number;
+  onViewYear = new Date().getFullYear();
   amount: number;
   category: string;
   note: string = '';
-  transactions: any;
+  transactions = [];
   categories: any;
+  parametreString: string;
   transactionId: string;
-  constructor(private categoryService: CategoryService, private transactionService: TransactionService) {
+  constructor(private cd: ChangeDetectorRef, private categoryService: CategoryService, private transactionService: TransactionService) {
   }
 
-  ngOnInit() {
-    this.transactionService.getTransactions().subscribe(
+  ngOnChanges(changes: SimpleChanges) {
+    const data: SimpleChange = changes.data;
+    this.onViewMonth = data.currentValue;
+    this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+    this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
         data => {
-          this.transactions = data['data'];
+          if (data['data']) {
+            this.transactions = data['data'];
+          }
+          else{
+            this.transactions = [];
+          }
         }
     );
     this.categoryService.getCategories().subscribe(
         data => {
-          this.categories = data['data'];
+          if (data['data']) {
+            this.categories = data['data'];
+          }
         }
     );
+  }
+
+  ngOnInit() {
+    this.cd.detectChanges();
   }
 
   viewTransaction(tranId){

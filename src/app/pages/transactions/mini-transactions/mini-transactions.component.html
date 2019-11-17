@@ -1,8 +1,11 @@
+<div *ngIf="!transactions.length" class="">
+    <p class="text-center font-weight-bold">No transactions available for this month</p>
+</div>
 <ul class="list-group list-group-flush">
     <li *ngFor="let transaction of transactions" class="list-group-item d-flex justify-content-between align-items-center">
-        <div class="container">
+        <div class="container" (click)="viewTransaction(transaction.transactionId); frame.show();" >
             <div class="row">
-                <span (click)="viewTransaction(transaction.transactionId); frame.show();" class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
+                <span class="text-capitalize font-weight-bolder">{{transaction.categoryName}}</span>
             </div>
             <div class="row">
                 <div class="col-9">
