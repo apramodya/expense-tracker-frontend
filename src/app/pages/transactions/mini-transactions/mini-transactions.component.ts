@@ -24,29 +24,105 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
   constructor(private cd: ChangeDetectorRef, private categoryService: CategoryService, private transactionService: TransactionService) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    const data: SimpleChange = changes.data;
-    // const variable: SimpleChange = changes.variable;
-    this.onViewMonth = data.currentValue;
-    this.parametreString = this.onViewYear + '-' + this.onViewMonth;
-    this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
-        data => {
-          if (data['data']) {
-            this.transactions = data['data'];
-          }
-          else{
-            this.transactions = [];
-          }
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes);
+        if (changes) {
+            const data: SimpleChange = changes.data;
+            const variable: SimpleChange = changes.variable;
+            if (variable && !data) {
+                if ( !variable.isFirstChange()) {
+                    this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+                    this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+                        data => {
+                            if (data['data']) {
+                                this.transactions = data['data'];
+                            }
+                            else{
+                                this.transactions = [];
+                            }
+                        }
+                    );
+                    this.categoryService.getCategories().subscribe(
+                        data => {
+                            if (data['data']) {
+                                this.categories = data['data'];
+                            }
+                        }
+                    );
+                }
+            }
+            else if (data && variable) {
+                if (data.isFirstChange()) {
+                    this.onViewMonth = data.currentValue;
+                    this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+                    this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+                        data => {
+                            if (data['data']) {
+                                this.transactions = data['data'];
+                            }
+                            else{
+                                this.transactions = [];
+                            }
+                        }
+                    );
+                    this.categoryService.getCategories().subscribe(
+                        data => {
+                            if (data['data']) {
+                                this.categories = data['data'];
+                            }
+                        }
+                    );
+                }
+            }
+            else if (data && !variable) {
+                if (!data.isFirstChange()) {
+                    this.onViewMonth = data.currentValue;
+                    this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+                    this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+                        data => {
+                            if (data['data']) {
+                                this.transactions = data['data'];
+                            }
+                            else{
+                                this.transactions = [];
+                            }
+                        }
+                    );
+                    this.categoryService.getCategories().subscribe(
+                        data => {
+                            if (data['data']) {
+                                this.categories = data['data'];
+                            }
+                        }
+                    );
+                }
+            }
         }
-    );
-    this.categoryService.getCategories().subscribe(
-        data => {
-          if (data['data']) {
-            this.categories = data['data'];
-          }
-        }
-    );
-  }
+    }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   const data: SimpleChange = changes.data;
+  //   // const variable: SimpleChange = changes.variable;
+  //   this.onViewMonth = data.currentValue;
+  //   this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+  //   this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+  //       data => {
+  //         if (data['data']) {
+  //           this.transactions = data['data'];
+  //         }
+  //         else{
+  //           this.transactions = [];
+  //         }
+  //       }
+  //   );
+  //   this.categoryService.getCategories().subscribe(
+  //       data => {
+  //         if (data['data']) {
+  //           this.categories = data['data'];
+  //         }
+  //       }
+  //   );
+  // }
 
   ngOnInit() {
     this.cd.detectChanges();
@@ -61,10 +137,31 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
           console.log(error);
         },
         () => {
-          this.ngOnInit();
+          this.loadAgain();
         }
     );
   }
+
+    loadAgain(){
+        this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+        this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+            data => {
+                if (data['data']) {
+                    this.transactions = data['data'];
+                }
+                else{
+                    this.transactions = [];
+                }
+            }
+        );
+        this.categoryService.getCategories().subscribe(
+            data => {
+                if (data['data']) {
+                    this.categories = data['data'];
+                }
+            }
+        );
+    }
 
   viewTransaction(tranId){
     for (const item of this.transactions){
@@ -92,7 +189,7 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
         },
         () => {
           this.frame.hide();
-          this.ngOnInit();
+          this.loadAgain();
         }
     );
   }
