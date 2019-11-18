@@ -74,6 +74,29 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
                 );
             }
         }
+        else if (data && !variable) {
+            if (!data.isFirstChange()) {
+                this.onViewMonth = data.currentValue;
+                this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+                this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+                    data => {
+                        if (data['data']) {
+                            this.transactions = data['data'];
+                        }
+                        else{
+                            this.transactions = [];
+                        }
+                    }
+                );
+                this.categoryService.getCategories().subscribe(
+                    data => {
+                        if (data['data']) {
+                            this.categories = data['data'];
+                        }
+                    }
+                );
+            }
+        }
     }
   }
 
