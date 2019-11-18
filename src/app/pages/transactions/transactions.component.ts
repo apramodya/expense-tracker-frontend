@@ -76,7 +76,6 @@ export class TransactionsComponent implements OnInit {
     else{
       this.prevDis = false;
     }
-    this.onVariable = '_' + Math.random().toString(36).substr(2, 9);
     this.viewChild.ngOnInit();
   }
   prevMonth() {
@@ -88,7 +87,6 @@ export class TransactionsComponent implements OnInit {
     else{
       this.nextDis = false;
     }
-    this.onVariable = '_' + Math.random().toString(36).substr(2, 9);
     this.viewChild.ngOnInit();
   }
 }

@@ -25,45 +25,97 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const data: SimpleChange = changes.data;
-    // const variable: SimpleChange = changes.variable;
-    this.onViewMonth = data.currentValue;
-    this.parametreString = this.onViewYear + '-' + this.onViewMonth;
-    this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
-        data => {
-          if (data['data']) {
-            this.transactions = data['data'];
-          }
-          else{
-            this.transactions = [];
-          }
+      console.log(changes);
+    if (changes) {
+        const data: SimpleChange = changes.data;
+        const variable: SimpleChange = changes.variable;
+        if (variable && !data) {
+            if ( !variable.isFirstChange()) {
+                this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+                this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+                    data => {
+                        if (data['data']) {
+                            this.transactions = data['data'];
+                        }
+                        else{
+                            this.transactions = [];
+                        }
+                    }
+                );
+                this.categoryService.getCategories().subscribe(
+                    data => {
+                        if (data['data']) {
+                            this.categories = data['data'];
+                        }
+                    }
+                );
+            }
         }
-    );
-    this.categoryService.getCategories().subscribe(
-        data => {
-          if (data['data']) {
-            this.categories = data['data'];
-          }
+        else if (data && variable) {
+            if (data.isFirstChange()) {
+                this.onViewMonth = data.currentValue;
+                this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+                this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+                    data => {
+                        if (data['data']) {
+                            this.transactions = data['data'];
+                        }
+                        else{
+                            this.transactions = [];
+                        }
+                    }
+                );
+                this.categoryService.getCategories().subscribe(
+                    data => {
+                        if (data['data']) {
+                            this.categories = data['data'];
+                        }
+                    }
+                );
+            }
         }
-    );
+    }
   }
 
   ngOnInit() {
     this.cd.detectChanges();
   }
 
+  loadAgain(){
+      this.parametreString = this.onViewYear + '-' + this.onViewMonth;
+      this.transactionService.getTransactionsByMonth(this.parametreString).subscribe(
+          data => {
+              if (data['data']) {
+                  this.transactions = data['data'];
+              }
+              else{
+                  this.transactions = [];
+              }
+          }
+      );
+      this.categoryService.getCategories().subscribe(
+          data => {
+              if (data['data']) {
+                  this.categories = data['data'];
+              }
+          }
+      );
+  }
+
   deleteTransaction(tranId) {
-    this.transactionService.deleteTransactions(tranId).subscribe(
-        data => {
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        },
-        () => {
-          this.ngOnInit();
-        }
-    );
+    if (confirm('Áre you sure you want to delete this transaction?')) {
+        this.transactionService.deleteTransactions(tranId).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                this.loadAgain();
+            }
+        );
+    }
   }
 
   viewTransaction(tranId){
@@ -92,7 +144,7 @@ export class MiniTransactionsComponent implements OnInit, OnChanges {
         },
         () => {
           this.frame.hide();
-          this.ngOnInit();
+          this.loadAgain();
         }
     );
   }
